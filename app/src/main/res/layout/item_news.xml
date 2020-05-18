@@ -41,6 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:padding="6dp"
+        android:visibility="gone"
         android:src="@drawable/ic_remove" />
 
 </androidx.cardview.widget.CardView>
