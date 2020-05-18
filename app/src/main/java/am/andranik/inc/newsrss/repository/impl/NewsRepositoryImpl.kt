@@ -50,7 +50,7 @@ class NewsRepositoryImpl(
                 if (it.isNotEmpty()) {
                     val lastNewsDate = sharedPreferencesHelper.getLastNewsDate()
                     val entityNewDate = dateConverter.stringDateToLong(it[0].pubDate)
-                    hasUpdate = lastNewsDate != -1L && entityNewDate > lastNewsDate
+                    hasUpdate = entityNewDate > lastNewsDate
                 }
             }
             hasUpdate
