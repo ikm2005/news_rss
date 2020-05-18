@@ -33,4 +33,5 @@
     <string name="cancel">Cancel</string>
     <string name="new_news_message">There are new news</string>
     <string name="notification_channel_id">News_notification_id</string>
+    <string name="no_data">No Data</string>
 </resources>

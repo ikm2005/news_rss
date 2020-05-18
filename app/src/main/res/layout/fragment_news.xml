@@ -19,6 +19,10 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+    <include
+        android:id="@+id/empty_view"
+        layout="@layout/empty_view" />
+
     <androidx.core.widget.ContentLoadingProgressBar
         android:id="@+id/content_loading_progress_bar_news"
         style="?android:attr/progressBarStyleHorizontal"

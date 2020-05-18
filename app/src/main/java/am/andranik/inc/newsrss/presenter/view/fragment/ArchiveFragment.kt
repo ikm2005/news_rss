@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -61,11 +62,12 @@ class ArchiveFragment : Fragment() {
 
         archiveViewModel.news.observe(viewLifecycleOwner, Observer { newsList ->
             newsAdapter.updateData(newsList)
+            empty_view.isVisible = newsList.isEmpty()
         })
         archiveViewModel.message.observe(viewLifecycleOwner, Observer { message ->
             showMessage(message)
         })
-        archiveViewModel.loading.observe(viewLifecycleOwner, Observer {loading ->
+        archiveViewModel.loading.observe(viewLifecycleOwner, Observer { loading ->
             if (loading) {
                 content_loading_progress_bar_archive.visibility = View.VISIBLE
                 content_loading_progress_bar_archive.show()

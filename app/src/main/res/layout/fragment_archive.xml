@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/news_background"
     tools:context=".presenter.view.fragment.NewsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_archive"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
+
+    <include
+        android:id="@+id/empty_view"
+        layout="@layout/empty_view" />
 
     <androidx.core.widget.ContentLoadingProgressBar
         android:id="@+id/content_loading_progress_bar_archive"
@@ -19,7 +23,7 @@
         android:layout_height="@dimen/progress_content_height"
         android:background="@color/news_background"
         android:indeterminate="true"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

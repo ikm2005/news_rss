@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -60,12 +61,14 @@ class NewsFragment : Fragment() {
         newsViewModel.news.observe(viewLifecycleOwner, Observer { newsList ->
             swipe_container.isRefreshing = false
             newsAdapter.updateData(newsList)
+            empty_view.isVisible = newsList.isEmpty()
         })
         newsViewModel.message.observe(viewLifecycleOwner, Observer { message ->
             swipe_container.isRefreshing = false
             showMessage(message)
+            empty_view.isVisible = newsAdapter.itemCount == 0
         })
-        newsViewModel.loading.observe(viewLifecycleOwner, Observer {loading ->
+        newsViewModel.loading.observe(viewLifecycleOwner, Observer { loading ->
             if (loading) {
                 content_loading_progress_bar_news.visibility = View.VISIBLE
                 content_loading_progress_bar_news.show()
