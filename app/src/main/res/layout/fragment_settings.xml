@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".presenter.view.fragment.SettingsFragment">
+
+    <FrameLayout
+        android:id="@+id/ll_interval_enable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/settings_row_padding">
+
+        <TextView
+            android:id="@+id/tv_interval_enable_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="@string/settings_interval_enable_title"
+            android:textColor="@color/black_text_color"
+            android:textSize="@dimen/settings_text_size" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/sc_interval_enable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_interval_selection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/settings_row_padding">
+
+        <TextView
+            android:id="@+id/tv_interval_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="@string/settings_interval_title"
+            android:textColor="@color/black_text_color"
+            android:textSize="@dimen/settings_text_size" />
+
+        <TextView
+            android:id="@+id/tv_interval_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:paddingStart="@dimen/nav_header_vertical_spacing"
+            android:textColor="@color/grey_text_color"
+            tools:text="@string/interval_5_minute_not_recommended" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_language_selection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/settings_row_padding">
+
+        <TextView
+            android:id="@+id/tv_language_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="@string/settings_language_title"
+            android:textColor="@color/black_text_color"
+            android:textSize="@dimen/settings_text_size" />
+
+        <TextView
+            android:id="@+id/tv_language_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:paddingStart="@dimen/nav_header_vertical_spacing"
+            android:textColor="@color/grey_text_color"
+            tools:text="@string/language_armenian" />
+    </LinearLayout>
+
+</LinearLayout>

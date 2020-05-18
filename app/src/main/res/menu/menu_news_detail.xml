@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_open_in_web"
+        android:icon="@drawable/ic_web"
+        android:title="@string/menu_title_open_in_chrome"
+        app:showAsAction="ifRoom|withText" />
+
+    <item
+        android:id="@+id/menu_save_content"
+        android:icon="@drawable/ic_download_content"
+        android:title="@string/menu_title_archive"
+        app:showAsAction="ifRoom|withText" />
+
+</menu>
