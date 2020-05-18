@@ -19,6 +19,6 @@ class SyncDataWorker(appContext: Context, workerParams: WorkerParameters) :
         if (hasUpdate) {
             notificationHelper.showUpdateNotification()
         }
-        Result.retry()
+        Result.success()
     }
 }

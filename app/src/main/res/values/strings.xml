@@ -19,6 +19,7 @@
     <string name="settings_interval_enable_title">Automatic background sync</string>
     <string name="language_armenian">Հայերեն (Armenian)</string>
     <string name="language_english">English</string>
+    <string name="language_russian">Русский (Russian)</string>
     <string name="interval_minute_not_recommended">1 min (not recommended)</string>
     <string name="interval_5_minute_not_recommended">5 min (not recommended)</string>
     <string name="interval_15_minutes">15 min</string>

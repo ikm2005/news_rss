@@ -65,5 +65,13 @@ class ArchiveFragment : Fragment() {
         archiveViewModel.message.observe(viewLifecycleOwner, Observer { message ->
             showMessage(message)
         })
+        archiveViewModel.loading.observe(viewLifecycleOwner, Observer {loading ->
+            if (loading) {
+                content_loading_progress_bar_archive.visibility = View.VISIBLE
+                content_loading_progress_bar_archive.show()
+            } else {
+                content_loading_progress_bar_archive.hide()
+            }
+        })
     }
 }

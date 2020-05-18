@@ -28,9 +28,14 @@ class SyncScheduler(
             .build()
 
         val periodicSyncDataWork =
-            PeriodicWorkRequest.Builder(SyncDataWorker::class.java, frequency, TimeUnit.MILLISECONDS)
+            PeriodicWorkRequest.Builder(
+                SyncDataWorker::class.java,
+                frequency,
+                TimeUnit.MILLISECONDS
+            )
                 .addTag(TAG_SYNC_DATA)
                 .setConstraints(constraints)
+                .setInitialDelay(frequency, TimeUnit.MILLISECONDS)
                 .build()
 
         WorkManager.getInstance(context).enqueueUniquePeriodicWork(

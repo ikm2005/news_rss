@@ -6,13 +6,12 @@ import am.andranik.inc.newsrss.repository.util.Status
 import am.andranik.inc.newsrss.util.SingleLiveEvent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ArchiveViewModel(private val archiveRepository: ArchiveRepository) : ViewModel() {
+class ArchiveViewModel(private val archiveRepository: ArchiveRepository) : BaseViewModel() {
 
     private val _news = MutableLiveData<List<NewsUI>>()
     private val _singleNews = MutableLiveData<NewsUI>()
@@ -28,9 +27,11 @@ class ArchiveViewModel(private val archiveRepository: ArchiveRepository) : ViewM
     }
 
     fun loadArchives() {
+        _loading.value = true
         viewModelScope.launch(Dispatchers.IO) {
             val result = archiveRepository.getArchives()
             withContext(Dispatchers.Main) {
+                _loading.value = false
                 when (result.status) {
                     Status.SUCCESS -> {
                         _news.value = result.data

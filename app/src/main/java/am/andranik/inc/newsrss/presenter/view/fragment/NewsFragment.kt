@@ -65,5 +65,13 @@ class NewsFragment : Fragment() {
             swipe_container.isRefreshing = false
             showMessage(message)
         })
+        newsViewModel.loading.observe(viewLifecycleOwner, Observer {loading ->
+            if (loading) {
+                content_loading_progress_bar_news.visibility = View.VISIBLE
+                content_loading_progress_bar_news.show()
+            } else {
+                content_loading_progress_bar_news.hide()
+            }
+        })
     }
 }

@@ -12,12 +12,6 @@ fun Fragment.showMessage(message: String) {
     errorSnackBar?.show()
 }
 
-fun Fragment.showMessage(messageResId: Int) {
-    val errorSnackBar: Snackbar? =
-        view?.let { Snackbar.make(it, messageResId, Snackbar.LENGTH_LONG) }
-    errorSnackBar?.show()
-}
-
 fun View.showMessage(message: String) {
     val errorSnackBar: Snackbar? =
         Snackbar.make(this, message, Snackbar.LENGTH_LONG)
