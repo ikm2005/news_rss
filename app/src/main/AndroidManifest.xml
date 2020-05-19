@@ -26,8 +26,10 @@
         </activity>
         <activity
             android:name=".presenter.view.activity.NewsDetailActivity"
-            android:theme="@style/AppTheme"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppTheme" />
+
+        <receiver android:name=".sync.SyncReceiver" />
     </application>
 
 </manifest>

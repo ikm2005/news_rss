@@ -1,9 +1,11 @@
 package am.andranik.inc.newsrss.sync
 
 import am.andranik.inc.newsrss.data.util.SharedPreferencesHelper
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.content.Context
-import androidx.work.*
-import java.util.concurrent.TimeUnit
+import android.content.Intent
+import android.os.SystemClock
 
 
 class SyncScheduler(
@@ -11,9 +13,14 @@ class SyncScheduler(
     private val preferencesHelper: SharedPreferencesHelper
 ) {
 
-    companion object {
-        private const val TAG_SYNC_DATA = "sync.news.updates"
-        private const val SYNC_DATA_WORK_NAME = "news.sync.data.worker"
+    private var alarmMgr: AlarmManager? = null
+    private val alarmIntent: PendingIntent
+
+    init {
+        alarmMgr = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmIntent = Intent(context, SyncReceiver::class.java).let { intent ->
+            PendingIntent.getBroadcast(context, 0, intent, 0)
+        }
     }
 
     fun scheduleSyncManagerIfNeeded() {
@@ -23,29 +30,15 @@ class SyncScheduler(
     }
 
     fun scheduleSyncManager(frequency: Long) {
-        val constraints: Constraints = Constraints.Builder()
-            .setRequiredNetworkType(NetworkType.CONNECTED)
-            .build()
-
-        val periodicSyncDataWork =
-            PeriodicWorkRequest.Builder(
-                SyncDataWorker::class.java,
-                frequency,
-                TimeUnit.MILLISECONDS
-            )
-                .addTag(TAG_SYNC_DATA)
-                .setConstraints(constraints)
-                .setInitialDelay(frequency, TimeUnit.MILLISECONDS)
-                .build()
-
-        WorkManager.getInstance(context).enqueueUniquePeriodicWork(
-            SYNC_DATA_WORK_NAME,
-            ExistingPeriodicWorkPolicy.REPLACE,
-            periodicSyncDataWork
+        alarmMgr?.setInexactRepeating(
+            AlarmManager.ELAPSED_REALTIME_WAKEUP,
+            SystemClock.elapsedRealtime() + frequency,
+            frequency,
+            alarmIntent
         )
     }
 
     fun cancelSyncManager() {
-        WorkManager.getInstance(context).cancelAllWorkByTag(TAG_SYNC_DATA)
+        alarmMgr?.cancel(alarmIntent)
     }
 }
