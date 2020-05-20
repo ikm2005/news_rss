@@ -19,7 +19,6 @@ import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_news_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class NewsDetailActivity : AppCompatActivity() {
 
     companion object {
@@ -149,17 +148,19 @@ class NewsDetailActivity : AppCompatActivity() {
                 true
             }
             R.id.menu_open_in_web -> {
-                openInChrome()
+                openInChrome(news?.link ?: this.link)
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    private fun openInChrome() {
-        news?.let {
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(it.link))
+    private fun openInChrome(link: String?) {
+        link?.let {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(it))
             startActivity(browserIntent)
+        } ?: run {
+            root_view_news_detail.showMessage(R.string.error_failed_open_in_browser)
         }
     }
 
@@ -171,7 +172,11 @@ class NewsDetailActivity : AppCompatActivity() {
                 root_view_news_detail.showMessage(R.string.saved_in_archive)
             }
         } ?: run {
-            root_view_news_detail.showMessage(R.string.not_ready_to_archive)
+            if (link == null) {
+                root_view_news_detail.showMessage(R.string.not_ready_to_archive)
+            } else {
+                root_view_news_detail.showMessage(R.string.message_already_archived)
+            }
         }
     }
 
