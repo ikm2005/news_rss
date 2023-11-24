@@ -6,4 +6,20 @@
     "sha256_cert_fingerprints":
     ["35:32:CC:8E:70:56:62:D1:F2:D9:CE:9B:B7:6B:74:AF:D3:18:98:43:F4:3B:3B:DA:44:D2:89:93:B2:41:54:36"]
   }
+},
+{
+  "relation": ["delegate_permission/common.get_login_creds"],
+  "target": {
+    "namespace": "web",
+    "site": "https://github.com"
+  }
+},
+{
+  "relation": ["delegate_permission/common.get_login_creds"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.intelinair.myfs",
+    "sha256_cert_fingerprints":
+    ["35:32:CC:8E:70:56:62:D1:F2:D9:CE:9B:B7:6B:74:AF:D3:18:98:43:F4:3B:3B:DA:44:D2:89:93:B2:41:54:36"]
+  }
 }]
